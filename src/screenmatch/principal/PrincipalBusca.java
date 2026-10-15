@@ -15,9 +15,13 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class PrincipalBusca {
     public void main(String[] args) throws IOException, InterruptedException {
+
+        String apiKey = System.getenv("API_KEY");
         Scanner leitura = new Scanner(System.in);
         String busca = "";
         List<Titulo> titulos = new ArrayList<>();
@@ -33,7 +37,8 @@ public class PrincipalBusca {
             if (busca.equalsIgnoreCase("sair")) {
                 break;
             }
-            String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=b303eee7";
+            String buscaCodificada = URLEncoder.encode(busca.trim(), StandardCharsets.UTF_8);
+            String endereco = "https://www.omdbapi.com/?t=" + buscaCodificada + "&apikey=" + apiKey;
             try {
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
@@ -64,5 +69,6 @@ public class PrincipalBusca {
         escrita.write(gson.toJson(titulos));
         escrita.close();
         System.out.println("O programa finalizou corretamente!");
+
     }
 }
