@@ -9,7 +9,6 @@ objects, and saves the search results to a file.
 - Fetches movie/series data from the OMDb API using `HttpClient`
 - Parses JSON into Java objects with Gson
 - Models titles with OOP classes (`Titulo`, `TituloOmdb`)
-- [CHECK] Filters, sorts and groups results with Collections and Streams
 - Saves all searched titles to `filmes.json`
 - URL-encodes the search text, so titles with spaces, accents and special
   characters work (e.g. "Star Wars", "Amélie")
