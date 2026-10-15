@@ -1,25 +1,38 @@
 # Screenmatch
 
-Java console application that searches movies and series through an external API,
-organizes the data with OOP, and saves results to a file.
+Java console application that searches movies and series by title using the
+[OMDb API](https://www.omdbapi.com/), converts the JSON response into Java
+objects, and saves the search results to a file.
 
 ## Features
-- Search a title and fetch its data from the OMDB API
-- Models series, episodes and seasons with Java classes/records
-- Filters, sorts and groups results with Collections and Streams
-- Writes results to a JSON file
-- Handles errors such as invalid titles and failed requests with exception handling
+- Search any title interactively; type `sair` to exit
+- Fetches movie/series data from the OMDb API using `HttpClient`
+- Parses JSON into Java objects with Gson
+- Models titles with OOP classes (`Titulo`, `TituloOmdb`)
+- [CHECK] Filters, sorts and groups results with Collections and Streams
+- Saves all searched titles to `filmes.json`
+- URL-encodes the search text, so titles with spaces, accents and special
+  characters work (e.g. "Star Wars", "Amélie")
+- Handles invalid input and conversion errors without crashing
 
 ## Tech
-Java 23 · IntelliJ IDEA · Gson · Git/GitHub
+Java 23 · Gson · Java `HttpClient` · IntelliJ IDEA · Git/GitHub
 
 ## How to run
-1. Clone the repo: `git clone https://github.com/Joao-Healy/Screenmatch.git`
-2. Get a free API key at OMDB and set it as apikey
-3. Run `Main` in IntelliJ
+1. Clone the repo:
+   `git clone https://github.com/Joao-Healy/Screenmatch.git`
+2. Get a free API key at https://www.omdbapi.com/apikey.aspx
+3. Set the key as an environment variable named `API_KEY`
+   (in IntelliJ: Run > Edit Configurations > Environment variables >
+   `API_KEY=your_key`)
+4. Run `PrincipalBusca` and type a title to search
+
+The key is read from the environment and is never stored in the code.
 
 ## What I learned
-OOP design, consuming REST APIs, parsing JSON, Streams, error handling.
-
-## Next steps
-Spring Boot, database persistence, unit tests.
+- Designing classes with OOP and Java records
+- Consuming a REST API with `HttpClient` and parsing JSON with Gson
+- Writing results to a file
+- Debugging: fixed a crash on titles containing spaces by URL-encoding the
+  input with `URLEncoder`
+- Keeping secrets out of source control (environment variables + `.gitignore`)
