@@ -1,5 +1,4 @@
 🇧🇷 [Leia em português](README.pt-br.md)
-🇺🇸 [Read in English](README.md)
 # Screenmatch
 
 Java console application that searches movies and series by title using the
